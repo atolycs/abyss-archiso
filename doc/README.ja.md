@@ -14,6 +14,6 @@ Arch Linux + LTS Kernel + Installer + My Customize
 
 
 # ToDo
-[ ] ビルドスクリプトの構築
-[ ] テスト
-[ ] リポジトリを更新
+- [ ] ビルドスクリプトの構築
+- [ ] テスト
+- [ ] リポジトリを更新

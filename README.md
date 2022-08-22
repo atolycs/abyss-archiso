@@ -11,6 +11,6 @@ Arch Linux + LTS Kernel + Installer + My Customize
 
 
 # ToDo
-[  ] Base Build script
-[  ] test
-[  ] Backup to This Repository.
+- [ ] Base Build script
+- [ ] test
+- [ ] Backup to This Repository.
