@@ -1,42 +1,3 @@
-#!/bin/bash
-
-script_path="$( cd $(dirname $(readlink -f ${0})) && pwd)"
-
-# Load script Wrapper
-echo ${script_path}
-for f in $(ls -1 ${script_path}/shell_lib/*.bash);do
-   source $f
-done
-
-info() {
-   _msg_common info "${@}"
-}
-
-warn() {
-   _msg_common warn "${@}"
-}
-
-debug() {
-   [[ "${debug}" = true ]] && _msg_common debug "${@}"
-}
-
-error() {
-   _msg_common error "${@}"
-}
-
-_umount_trap(){
-   local _status="${?}"
-   error "Killed by the user."
-   exit ${_status}
-}
-
-
-# run on chroot
-_run_on_chroot() {
-  info "Running ${@} on chroot env..."
-  arch-chroot ${airootfs_dir} "${@}" || return "${?}"
-}
-
 # clean up airootfs
 _cleanup_common() {
  info "Cleaning up we can on airootfs..."
@@ -50,7 +11,4 @@ _cleanup_common() {
  printf '' > "${airootfs_dir}/etc/machine-id"
 
  info "Done!"
-} 
-
-
-
+}
