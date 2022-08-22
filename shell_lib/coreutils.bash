@@ -21,8 +21,12 @@ _umount() {
 }
 
 mount_abyss_rootfs() {
-  mkdir -p "${abyss_rootfs_dir}"
-  _mount "${abyss_rootfs}.img" "${abyss_rootfs_dir}"
+  mkdir -p "${airootfs_dir}"
+  _mount "${airootfs}.img" "${airootfs_dir}"
 }
 
-
+# run on chroot
+_run_on_chroot() {
+  info "Running ${@} on chroot env..."
+  arch-chroot ${airootfs_dir} "${@}" || return "${?}"
+}
