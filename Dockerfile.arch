@@ -1,0 +1,14 @@
+FROM archlinux:latest as setup
+RUN pacman --needed --noconfirm -Sy archlinux-keyring && \
+    pacman --needed --noconfirm -Syu \
+    archiso \
+    zsh \
+    git \
+    make \
+    grml-zsh-config \
+    reflector && \
+    usermod -s /usr/bin/zsh root 
+
+FROM setup as base
+WORKDIR /workspace
+COPY . /workspace

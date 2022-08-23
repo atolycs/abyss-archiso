@@ -6,3 +6,8 @@ _pacstrap_install() {
   pacstrap -C "${build_dir}/pacman.conf" "${_args[@]}"
   info "Packages Installed Successfully."
 }
+
+_pacman_mirror_server() {
+  info "Downloading ${pacman_mirror_server} Pacman Server List"
+  
+}
