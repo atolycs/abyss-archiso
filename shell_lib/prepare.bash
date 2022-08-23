@@ -5,5 +5,6 @@ _package_listup() {
 
 prepare_build() {
     # Base 
-    
+    local _package_store=(base ${profile})
+    :
 }
