@@ -25,11 +25,6 @@ mount_airootfs() {
   _mount "${airootfs_dir}.img" "${airootfs_dir}"
 }
 
-mount_abyss_rootfs() {
-  mkdir -p "${airootfs_dir}"
-  _mount "${airootfs}.img" "${airootfs_dir}"
-}
-
 # run on chroot
 _run_on_chroot() {
   info "Running ${@} on chroot env..."
