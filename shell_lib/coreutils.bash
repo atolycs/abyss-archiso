@@ -30,3 +30,4 @@ _run_on_chroot() {
   info "Running ${@} on chroot env..."
   arch-chroot ${airootfs_dir} "${@}" || return "${?}"
 }
+

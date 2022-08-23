@@ -1,0 +1,12 @@
+# This file ArchLinux Repository Package Name
+base-devel
+
+# Shell
+bash
+zsh
+
+# Micro code
+intel-ucode
+amd-ucode
+mkinitcpio-nfs-utils
+vim
