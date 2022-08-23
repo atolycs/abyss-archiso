@@ -3,8 +3,12 @@ _package_listup() {
     info "Checking ${_selector} in ${_list}"
 }
 
-prepare_build() {
+prepare_base_build() {
     # Base 
-    local _package_store=(base ${profile})
-    :
+    local _package_store=("base" "share")
+    for modules_name in ${_package_store[@]}; do
+        cat ${script_path}/modules/${modules_name}/packages.${arch} | \
+            sed -e 's|^#.*||g' \
+                -e '/^$/d'
+    done
 }

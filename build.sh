@@ -63,3 +63,8 @@ done
 
 #prepare_build
 _show_config
+#tt_array=$(prepare_base_build)
+
+#for ta_list in ${tt_array}; do
+#    pacstrap /mnt ${ta_list[@]}
+#done
