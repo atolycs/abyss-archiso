@@ -20,6 +20,11 @@ _umount() {
   return 0;
 }
 
+mount_airootfs() {
+  mkdir -p "${airootfs_dir}"
+  _mount "${airootfs_dir}.img" "${airootfs_dir}"
+}
+
 mount_abyss_rootfs() {
   mkdir -p "${airootfs_dir}"
   _mount "${airootfs}.img" "${airootfs_dir}"
@@ -31,3 +36,11 @@ _run_on_chroot() {
   arch-chroot ${airootfs_dir} "${@}" || return "${?}"
 }
 
+run_once() {
+  if [[ ! -e "${lockfile_dir}/build.${1}" ]];then
+    _umount ${airootfs_dir}
+    mount_airootfs
+    eval "${@}"
+    mkdir -p "${lockfile_dir}"; touch "${lockfile_dir}/build.${1}"
+  fi
+}

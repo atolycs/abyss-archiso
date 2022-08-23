@@ -1,3 +1,5 @@
 # This file ArchLinux Repository Package Name
 base
 syslinux
+linux-lts
+linux-lts-headers

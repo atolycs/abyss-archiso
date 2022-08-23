@@ -15,5 +15,68 @@ lightdm
 lightdm-slick-greeter
 lightdm-settings
 systemd
-systemd-boot
 sudo 
+
+#-- vpn --
+networkmanager
+openssh
+networkmanager-openvpn
+openconnect
+openvpn
+
+#-- other tools --
+ethtool
+rsync
+tcpdump
+nmap
+
+#-- interface support--
+usb_modeswitch
+usbutils
+
+#-- archive --
+arj
+binutils
+bzip2
+cpio
+gzip
+lha
+lrzip
+lz4
+lzip
+lzop
+p7zip
+tar
+unarj
+unrar
+xz
+zip
+zstd
+
+#-- systemd-boot
+os-prober
+systemd-boot
+
+#-- pacman
+reflector
+pacman
+
+#-- system monitor --
+htop
+
+#-- CLI --
+clonezilla
+ddrescue
+dmraid
+fsarchiver
+gptfdisk
+hdparm
+lvm2
+mdadm
+nvme-cli
+partclone
+parted
+partimage
+sdparm
+smartmontools
+testdisk

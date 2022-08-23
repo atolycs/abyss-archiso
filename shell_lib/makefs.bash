@@ -6,5 +6,7 @@ make_basefs() {
   info "Done!"
 
   info "Mounting ${airootfs_dir}.img on ${airootfs_dir} ..."
+  mount_airootfs
+  info "Done"
+  return 0
 }
-
