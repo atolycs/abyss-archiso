@@ -14,5 +14,5 @@ _pacman_mirror_server() {
             --sort rate \
             --country ${pacman_mirror_server} \
             --latest 10 \
-            --save 
+            --save ${airootfs_dir}/etc/pacman.d/mirrorlist
 }

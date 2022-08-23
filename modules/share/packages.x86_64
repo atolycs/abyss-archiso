@@ -10,3 +10,10 @@ intel-ucode
 amd-ucode
 mkinitcpio-nfs-utils
 vim
+
+lightdm
+lightdm-slick-greeter
+lightdm-settings
+systemd
+systemd-boot
+sudo 

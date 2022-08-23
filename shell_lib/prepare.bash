@@ -1,7 +1,3 @@
-_package_listup() {
-    local _selector="${1}" _list="${2}"
-    info "Checking ${_selector} in ${_list}"
-}
 
 prepare_base_build() {
     # Base 
@@ -11,4 +7,12 @@ prepare_base_build() {
             sed -e 's|^#.*||g' \
                 -e '/^$/d'
     done
+}
+
+_package_listup() {
+    local _selector="${1}" _list="${2}"
+#    info "Checking ${_selector} in package.${_list}"
+    cat ${_selector}/packages.${_list} | \
+        sed -e 's|^#.*||g' \
+            -e '/^$/d'
 }
