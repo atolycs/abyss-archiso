@@ -1,6 +1,9 @@
 # Abyss Linux ビルドツール
 
-スクリプトはArchISOをベースに、AlterISOの機能を取り込んでスクラッチしています。
+AbyssLinux なので、AbyssISOと名付けました。
+
+スクリプトはArchISOをベースに、AlterISOの機能を参考に構築しました。
+
 
 このスクリプトは、自作のOS[Abyss Linux]のISOビルドツールです。
 Arch Linux をベースとし、自分好みのカスタマイズをしています。
