@@ -3,7 +3,7 @@ _msg_common() {
   local _data=${1} _msg_opts
   [[ "${_data}" == "-n" ]] && _msg_opts+="-n" && shift 1;
   local _loglevel=${1}; shift 1
-  eval "_msg_${_loglevel}" ${_msg_opts} ${@}
+  eval "_msg_${_loglevel} ${_msg_opts} ${@}"
 }
 
 _msg_info() {
