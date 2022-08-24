@@ -1,4 +1,10 @@
 # This file ArchLinux Repository Package Name
+
+#-- display manager
+lightdm
+lightdm-slick-greeter
+lightdm-settings
+
 #-- xorg --
 gpm
 xorg-server

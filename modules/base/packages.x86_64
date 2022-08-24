@@ -3,3 +3,4 @@ base
 syslinux
 linux-lts
 linux-lts-headers
+linux-firmware
