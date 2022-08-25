@@ -3,7 +3,7 @@
 #-- display manager
 lightdm
 lightdm-slick-greeter
-lightdm-settings
+#lightdm-setting
 
 #-- xorg --
 gpm

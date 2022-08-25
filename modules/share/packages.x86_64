@@ -50,8 +50,9 @@ xz
 zip
 zstd
 
-#-- systemd-boot
+#-- OS info
 os-prober
+abysslinux-live
 
 #-- pacman
 reflector
