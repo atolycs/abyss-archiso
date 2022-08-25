@@ -12,3 +12,22 @@ _cleanup_common() {
 
  info "Done!"
 }
+
+#_remove_workdir() {
+#    
+#}
+
+# Error message
+error_exit_trap(){
+    local _exit="${?}" _line="${1}" && shift 1
+    error "An exception error occurred in the function"
+    error "Exit Code: ${_exit}\nLine: ${_line}\nArgument: ${ARGUMENT[*]}"
+    exit "${_exit}"
+}
+
+umount_trap() {
+    local _status="${?}"
+    _umount ${airootfs_dir}
+    error "It was killed by the user.\nThe process may not have completed successfully."
+    exit "${_status}"
+}

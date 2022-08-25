@@ -15,6 +15,7 @@ arch="$(uname -m)"
 profile="xfce4"
 work_dir="work"
 out_dir="out"
+noconfirm=false
 debug=false
 dry_run=false
 
@@ -42,7 +43,7 @@ _umount_trap(){
 
 ARGUMENT=("${DEFAULT_ARGUMENT[@]}" "${@}")
 
-OPTS=("a:" "c:" "o:" "w:" "p:") OPTL=("arch:" "comp-type:" "debug" "dry-run" "out:" "work:" "profile:" "country:")
+OPTS=("a:" "c:" "o:" "w:" "p:") OPTL=("arch:" "comp-type:" "no-confirm" "debug" "pacman-sv:" "dry-run" "out:" "work:" "profile:" "country:")
 GETOPT=(-o "$(printf "%s," "${OPTS[@]}")" -l "$(printf "%s," "${OPTL[@]}")" -- "${ARGUMENT[@]}")
 getopt -Q "${GETOPT[@]}" || exit 1
 readarray -t OPT < <(getopt "${GETOPT[@]}")
@@ -63,8 +64,10 @@ while true; do
          shift 2
          ;;
       --debug)         debug=true                            && shift 1;;
+      --pacman-sv)     pacman_mirror_server="${2}"           && shift 2;;
       --dry-run)       dry_run=true                          && shift 1;;
       --country)       pacman_mirror_server="${2}"           && shift 2;;
+      --no-confirm)    noconfirm=true                        && shift 1;;
       -a | --arch)     arch="${2}"                           && shift 2;;
       -o | --out)      out_dir="${2}"                        && shift 2;;
       -w | --work)     work_dir="${2}"                       && shift 2;;
@@ -81,8 +84,9 @@ done
 #for ta_list in ${tt_array}; do
 #    pacstrap /mnt ${ta_list[@]}
 #done
-echo "${dry_run}"
-echo "${debug}"
+#echo "${dry_run}"
+#echo "${debug}"
+_force_exit_trap
 
 build_dir="${work_dir}/build/${arch}"
 cache_dir="${work_dir}/cache/${arch}"
@@ -92,20 +96,25 @@ isofs_dir="${build_dir}/iso"
 lockfile_dir="${build_dir}/lockfile"
 profile_dir="${script_path}/profiles"
 out_dir="${work_dir}/${out_dir}"
-build_pacman_conf="${profile_dir}/${profile}/pacman.${arch}.conf"
+#build_pacman_conf="${profile_dir}/${profile}/pacman.${arch}.conf"
 
 [[ "${dry_run}" = "true" ]] && debug "dry-run mode"
 
 for _dir in build_dir cache_dir airootfs_dir isofs_dir lockfile_dir out_dir;do
-  if [[ "${dry_run}" != "true" ]];then
+  if [[ "${dry_run}" == "false" ]];then
     mkdir -p "$(eval "echo \$${_dir}")"
     eval "${_dir}=\"$(realpath "$(eval "echo \$${_dir}")")\""
   else
     eval "${_dir}=\"$(realpath -m "$(eval "echo \$${_dir}")")\""
+    _show_config
+    info "dry-run mode to exit."
+    exit 0
   fi
 done
 
+_rootcheck
+
 _show_config
-#run_once make_pacman_conf
-#run_once make_basefs
-#run_once make_packages_repo
+run_once make_pacman_conf
+run_once make_basefs
+run_once make_packages_repo

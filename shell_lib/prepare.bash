@@ -10,7 +10,15 @@ prepare_base_build() {
 
 _package_listup() {
     local _selector="${1}" _list="${2}" _pkglist
-    local _package_store="${profile_dir}/${_selector}/packages.${_list}"
+    local _profile_dir="${profile_dir}/${_selector}"
+    local _package_store=("${_profile_dir}/packages.${_list}")
+    local _prepare_package _prepare_module
+
+    if [ -f ${_profile_dir}/prepare_module ];then
+        _prepare_module=$(cat ${_profile_dir}/prepare_module)
+        _package_store+=(${modules_dir}/${_prepare_module}/packages.${arch})
+    fi
+       
     for _file in "${_package_store[@]}"; do
         readarray -t -O "${#_pkglist[@]}" _pkglist < <(grep -h -v ^'#' "${_file}" | grep -h -v ^$)
     done

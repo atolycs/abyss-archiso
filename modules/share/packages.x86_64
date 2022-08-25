@@ -52,7 +52,6 @@ zstd
 
 #-- systemd-boot
 os-prober
-systemd-boot
 
 #-- pacman
 reflector

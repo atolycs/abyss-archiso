@@ -6,4 +6,5 @@ _show_config() {
     info "airootfs_dir: ${airootfs_dir}"
     info "out_dir: ${out_dir}"
     info "tt_array: ${tt_array}"
+    _buildcheck
 }

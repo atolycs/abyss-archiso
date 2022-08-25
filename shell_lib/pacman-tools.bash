@@ -10,6 +10,9 @@ _pacstrap_install() {
 
 _pacman_mirror_server() {
   info "Downloading ${pacman_mirror_server} Pacman Server List"
+  if [ ! -d "${airootfs_dir}/etc/pacman.d" ];then
+    mkdir -p "${airootfs_dir}/etc/pacman.d"
+  fi
   reflector --protocol "https,http" \
             --sort rate \
             --country ${pacman_mirror_server} \
@@ -23,4 +26,19 @@ make_packages_repo() {
   echo "${_pkglist[*]}"
   printf "%s\n" "${_pkglist[@]}" >> "${build_dir}/packages.list"
   _pacstrap_install ${_pkglist[@]}
+}
+
+make_pacman_conf() {
+  local _pacman_conf _pacman_conf_list=("${script_path}/pacman.${arch}.conf" "${profile_dir}/${profile}/pacman.${arch}.conf" "${modules_dir}/pacman.${arch}.conf")
+  for _pacman_conf in "${_pacman_conf_list[@]}"; do
+    if [[ -f "${_pacman_conf}" ]];then
+      build_pacman_conf="${_pacman_conf}"
+      break
+    else
+      info "Skipping ${_pacman_conf}...."
+    fi
+  done
+  info "Use ${build_pacman_conf}"
+  sed -r "s|^#\\s*CacheDir.+|CacheDir     = ${cache_dir}|g" "${build_pacman_conf}" > "${build_dir}/pacman.conf"
+  _pacman_mirror_server
 }
