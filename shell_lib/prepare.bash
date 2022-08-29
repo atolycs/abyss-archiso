@@ -8,6 +8,11 @@ prepare_base_build() {
     printf "%s\n" "${_pkglist[@]}"
 }
 
+# _package_listup()
+# 
+# _selector: Profile Name
+# _list: Architecture
+
 _package_listup() {
     local _selector="${1}" _list="${2}" _pkglist
     local _profile_dir="${profile_dir}/${_selector}"
