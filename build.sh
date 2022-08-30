@@ -118,3 +118,6 @@ _show_config
 run_once make_pacman_conf
 run_once make_basefs
 run_once make_packages_repo
+#run_once 
+run_once make_setup_mkinitcpio
+run_once make_efi_boot
