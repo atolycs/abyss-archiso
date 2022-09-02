@@ -1,6 +1,13 @@
 # This file ArchLinux Repository Package Name
 base
 syslinux
+mkinitcpio
+mkinitcpio-archiso
 linux-lts
 linux-lts-headers
 linux-firmware
+
+# Virtual Machine configuration
+open-vm-tools
+qemu-guest-agent
+virtualbox-guest-utils-nox

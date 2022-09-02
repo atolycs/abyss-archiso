@@ -9,7 +9,7 @@ make_setup_mkinitcpio() {
         install -m 0644 -- "${script_path}/mkinitcpio/hooks/${_hook}" "${airootfs_dir}/etc/initcpio/hooks"
         install -m 0644 -- "${script_path}/mkinitcpio/install/${_hook}" "${airootfs_dir}/etc/initcpio/install"
     done
-
+    
     # install cpio
     install -m 0644 -- "${script_path}/mkinitcpio/install/archiso_kms" "${airootfs_dir}/etc/initcpio/install"
     install -m 0644 -- "${script_path}/mkinitcpio/mkinitcpio-archiso.conf" "${airootfs_dir}/etc/mkinitcpio-archiso.conf"
